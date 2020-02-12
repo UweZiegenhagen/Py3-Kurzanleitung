@@ -1,2 +1,3 @@
 # Py3-Kurzanleitung
-Eine kurze Einführung in Python 3
+
+Eine kurze Anleitung für die ersten Schritte mit Python 3

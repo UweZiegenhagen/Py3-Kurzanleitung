@@ -1,0 +1,76 @@
+%!TEX TS-program = Arara
+% arara: pdflatex: {shell: yes}
+\documentclass[12pt,ngerman]{scrreprt}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{booktabs}
+\usepackage{babel}
+\usepackage{graphicx}
+\usepackage{csquotes}
+\usepackage{paralist}
+\usepackage{microtype}
+\usepackage{xcolor}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+\title{Eine Kurzeinführung in Python~3}
+\author{Uwe Ziegenhagen}
+\begin{document}
+
+\tableofcontents
+
+\listoffigures
+
+\listoftables
+
+\clearpage
+
+\section*{Über dieses Dokument}
+
+Mit diesem Dokument versuche ich, auf wenigen Seiten einen Überblick über Python~3 zu geben. Ich habe nicht das Ziel, alle Aspekte der Sprache umfassend zu behandeln, ich möchte vielmehr den Einstieg in die Programmierung mit Python ermöglichen und zeigen, was man alles mit Python und ausgewählten Python-Modulen machen kann. 
+
+Aus Gründen der Einfachheit werden daher einzelne Aspekte etwas verkürzt dargestellt, die geneigten Leserinnen und Leser mögen es mir nachsehen. 
+
+Fehler jedoch bitte ich zu melden, am besten per E-Mail an ziegenhagen@gmail.com
+
+\vspace*{3em}Köln, den \today
+
+\chapter{Was ist eigentlich Python und warum sollte ich es können?}
+
+Python ist eine Programmiersprache, die Anfang der 1990er Jahre von Guido van Rossum am Centrum Wiskunde \& Informatica in Amsterdam in den Niederlanden entwickelt wurde. Python gilt als sehr gut lesbar und lernbar und eignet sich daher auch gut als erste Programmiersprache. 
+
+Python ist dabei eine sogenannte interpretierte Sprache, was heißt, dass man keinen Compiler wie beispielsweise in C und C++ benötigt, um ein Programm laufen zu lassen. Python-Programme sind daher meist etwas langsamer als kompilierte Programme, im praktischen Alltag spielt dies jedoch nur selten eine Rolle.
+
+Lange Zeit gab es zwei parallele Entwicklungsstränge von Python, Python~2 und Python~3. Da Python~2 jetzt Anfang 2020 offiziell den Status \enquote{deprecated}, also  \enquote{überholt}, hat, betrachten wir in diesem Dokument nur Python~3.
+
+\chapter{Installation}
+
+\begin{itemize}
+	\item Unter Linux ist Python üblicherweise vorinstalliert, oft ist jedoch noch (zumindest mit Stand Anfang 2020) Python~2.7 das Standard-Python, nicht Python~3.x 
+	\item Unter Windows und Mac OS X ist standardmäßig kein Python installiert, hier muss man selbst eine Python-Distribution installieren.
+	\item Auf allen Plattformen empfehle ich die Installation von Anaconda Python, siehe https://www.anaconda.com/distribution/
+	\item Der für mich entscheidende Vorteil von Anaconda ist, dass auf allen Plattformen gleich  benutzt werden kann und eine Vielzahl von Paketen bereits mitbringt, die man sonst installieren müsste.
+	\item Alternativen zu Anaconda sind WinPython (unter Windows) sowie das \enquote{offizielle} Python von https://www.python.org/downloads/
+\end{itemize}
+
+Zur Installation möchte ich weiter nicht viel sagen, runterladen und der Installationsanleitung folgen sollte klappen!
+
+
+\chapter{Python als Taschenrechner}
+
+Man kann Python auf verschiedene Arten benutzen:
+
+\begin{enumerate}
+\item interaktiv wie einen Taschenrechner
+\item im Batch-Modus, bei dem die Befehle alle in einer Datei stehen und dann in \enquote{einem Rutsch} (englisch \enquote{Batch}) abgearbeitet werden
+\item über halb-interaktive Methoden wie Jupyter und iPython
+\end{enumerate}
+
+In diesem Kapitel betrachten wir kurz die interaktive Nutzung, in den weiteren Kapiteln werden wir dann näher auf die Batch-Nutzung/ halb-interaktive Nutzung eingehen.
+
+\chapter{Funktionen}
+
+\chapter{Anwendungen}
+
+\end{document}
