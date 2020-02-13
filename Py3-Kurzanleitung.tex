@@ -11,12 +11,82 @@
 \usepackage{paralist}
 \usepackage{microtype}
 \usepackage{xcolor}
+\usepackage{cmbright}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{6pt}
 
+\usepackage{scrpage2}
+\pagestyle{scrheadings}
+\setheadsepline[\textwidth]{1pt}{}
+ \ohead{\headmark}
+\ofoot[\pagemark]{\pagemark}
+\cfoot[]{}
+\chead[]{}
+
+\usepackage{listings}
+\lstset{%
+    float=hbp,%
+    basicstyle=\ttfamily\small, %
+    identifierstyle=\color{colIdentifier}, %
+    keywordstyle=\color{colKeys}, %
+    stringstyle=\color{colString}, %
+    commentstyle=\color{colComments}, %
+    columns=flexible, %
+    tabsize=2, %
+    frame=single, %
+    extendedchars=true, %
+    showspaces=false, %
+    showstringspaces=false, %
+    numbers=left, %
+    numberstyle=\tiny, %
+    breaklines=true, %
+    backgroundcolor=\color{hellgelb}, %
+    breakautoindent=true, %
+    captionpos=b%
+}
+
+\lstset{literate=%
+    {Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Ü}{{\"U}}1
+    {ß}{{\ss}}1
+    {ü}{{\"u}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+    {~}{{\textasciitilde}}1
+}
+
+\usepackage{hyperref}
+\hypersetup{
+    bookmarks=true,                     % show bookmarks bar
+    unicode=false,                      % non - Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,                        % show Acrobat’s toolbar
+    pdfmenubar=true,                        % show Acrobat’s menu
+    pdffitwindow=false,                 % window fit to page when opened
+    pdfstartview={FitH},                    % fits the width of the page to the window
+    pdftitle={Python Kurzeinführung},                        % title
+    pdfauthor={Uwe Ziegenhagen},                 % author
+    pdfsubject={Python},                   % subject of the document
+    pdfcreator={Uwe Ziegenhagen},                   % creator of the document
+    pdfproducer={Producer},             % producer of the document
+    pdfkeywords={Python,Introduction},   % list of keywords
+    pdfnewwindow=true,                  % links in new window
+    colorlinks=true,                        % false: boxed links; true: colored links
+    linkcolor=blue,                          % color of internal links
+    filecolor=black,                     % color of file links
+    citecolor=black,                     % color of file links
+    urlcolor=black                        % color of external links
+}
+
+
+
 \title{Eine Kurzeinführung in Python~3}
+\subtitle{-- DRAFT --}
 \author{Uwe Ziegenhagen}
+
+
 \begin{document}
+\maketitle
 
 \tableofcontents
 
@@ -34,7 +104,10 @@ Aus Gründen der Einfachheit werden daher einzelne Aspekte etwas verkürzt darge
 
 Fehler jedoch bitte ich zu melden, am besten per E-Mail an ziegenhagen@gmail.com
 
+
 \vspace*{3em}Köln, den \today
+
+\vfill Dieses Dokument entstand mit \LaTeX\ und der CM Bright Schrift.
 
 \chapter{Was ist eigentlich Python und warum sollte ich es können?}
 
@@ -47,14 +120,17 @@ Lange Zeit gab es zwei parallele Entwicklungsstränge von Python, Python~2 und P
 \chapter{Installation}
 
 \begin{itemize}
-	\item Unter Linux ist Python üblicherweise vorinstalliert, oft ist jedoch noch (zumindest mit Stand Anfang 2020) Python~2.7 das Standard-Python, nicht Python~3.x 
-	\item Unter Windows und Mac OS X ist standardmäßig kein Python installiert, hier muss man selbst eine Python-Distribution installieren.
-	\item Auf allen Plattformen empfehle ich die Installation von Anaconda Python, siehe https://www.anaconda.com/distribution/
-	\item Der für mich entscheidende Vorteil von Anaconda ist, dass auf allen Plattformen gleich  benutzt werden kann und eine Vielzahl von Paketen bereits mitbringt, die man sonst installieren müsste.
-	\item Alternativen zu Anaconda sind WinPython (unter Windows) sowie das \enquote{offizielle} Python von https://www.python.org/downloads/
+	\item Unter Linux ist Python üblicherweise vorinstalliert, oft ist jedoch noch -- zumindest Stand Anfang 2020 -- Python~2.7 das Standard-Python, nicht Python~3. 
+	\item Unter Windows und Mac OS X ist standardmäßig kein Python installiert, hier muss man also selbst eine Python-Distribution installieren.
+\item Neben dem Standardpython, das man sich von \url{https://www.python.org/downloads} herunterladen kann, gibt es noch alternative Distributionen.
+	\item Die bekannteste Distribution ist Anaconda Python, siehe \url{https://www.anaconda.com/distribution}
+	\item Als Alternative zu Anaconda ist WinPython (\url{https://winpython.github.io/}) empfehlenswert.
 \end{itemize}
 
-Zur Installation möchte ich weiter nicht viel sagen, runterladen und der Installationsanleitung folgen sollte klappen!
+\section{Installation von Python 3.8 unter Windows}
+
+
+\section{Installation von Anaconda unter Windows}
 
 
 \chapter{Python als Taschenrechner}
