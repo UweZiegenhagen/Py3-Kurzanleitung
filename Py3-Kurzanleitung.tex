@@ -56,6 +56,14 @@
     {~}{{\textasciitilde}}1
 }
 
+\usepackage{minted}
+
+\usepackage{caption}
+\captionsetup{font={normalsize}, textfont={sf}, labelfont={bf,sf}}
+
+\renewcommand{\listingscaption}{{\sffamily Code}}
+
+
 \usepackage{hyperref}
 \hypersetup{
     bookmarks=true,                     % show bookmarks bar
@@ -94,7 +102,34 @@
 
 \listoftables
 
+\listoflistings
+
 \clearpage
+
+\definecolor{bg}{rgb}{0.95,0.95,0.95}
+
+\begin{minted}[
+               linenos,
+               bgcolor=bg,
+               numbersep=5pt,
+               gobble=2,
+               label={aaa},
+               frame=lines,
+               framesep=2mm]{python}
+print('Hello World')
+\end{minted}
+
+\mint{python}|import this|
+
+
+\inputminted[bgcolor=bg]{python}{Codes/hello_world.py}.
+
+    \begin{listing}[H]
+        \caption{11 This is below the code.}
+        \inputminted{python}{Codes/hello_world.py}
+        \label{lst:the-code}
+    \end{listing}
+
 
 \section*{Über dieses Dokument}
 
