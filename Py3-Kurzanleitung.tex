@@ -193,15 +193,18 @@ Lange Zeit gab es zwei parallele Entwicklungsstränge von Python, Python~2 und P
 \section{Installation von Anaconda unter Windows}
 
 
-\chapter{Python als Taschenrechner}
+\chapter{Wie nutze ich Python?}
 
 Man kann Python auf verschiedene Arten benutzen:
 
 \begin{enumerate}
 \item interaktiv wie einen Taschenrechner
 \item im Batch-Modus, bei dem die Befehle alle in einer Datei stehen und dann in \enquote{einem Rutsch} (englisch \enquote{Batch}) abgearbeitet werden
-\item über halb-interaktive Methoden wie Jupyter und iPython
+\item über andere Methoden wie Jupyter und iPython
 \end{enumerate}
+
+\section{Python im interaktiven Modus}
+
 
 In diesem Kapitel betrachten wir kurz die interaktive Nutzung, in den weiteren Kapiteln werden wir dann näher auf die anderen Nutzungsarten eingehen. 
 
@@ -234,6 +237,8 @@ Mehr Funktionalität im \enquote{Taschenrechner} erhält man, wenn man eines der
 \item[\texttt{from math import sqrt}] lädt die Funktion in den \enquote{allgemeinen Speicher}, ein Präfix ist beim Aufruf nicht mehr nötig. Beispiel \texttt{sqrt(4)} Mit dieser Methode sollte man sorgsam umgehen, da verschiedene Module gleiche Funktionsnamen nutzen können. In der Praxis ist daher die zweite Methode empfehlenswert.
 \end{description}
 
+\section{Python im Batch-Modus}
+
 Ab jetzt wechseln wir in den Batch-Modus von Python, was nichts anderes heißt als dass wir unseren Python-Code in eine Textdatei schreiben und diese der \texttt{python.exe} als Argument übergeben. Python verarbeitet dann die Datei \enquote{in einem Rutsch}.
 
 
@@ -244,6 +249,8 @@ Listing \ref{importe} zeigt einen Überblick über die verschiedenen Methoden.
 Listing zeigt auch noch einen wichtigen Unterschied zum interaktiven Modus: während man im interaktiven Modus sofort eine Ausgabe der Ergebnisse erhält, muss bzw. kann man im Batch-Modus die Ein- und Ausgabe von Werten, etc. explizit steuern. 
 
 \inputminted[bgcolor=bg]{python}{Codes/importe.py}.
+
+\section{Ein- und Ausgabe}
 
 Für die Ausgabe nutzt man in Python den \texttt{print()}-Befehl, für die Eingabe \texttt{input()}, Listing \ref{inout} zeigt entsprechende Beispiele, die wir uns noch ein wenig genauer anschauen müssen:
 
@@ -271,7 +278,13 @@ Hallo, Uwe
 In einem Jahr sind Sie 44 Jahre alt
 \end{ausgabe}
 
+\section{Datentypen}
 
+Zwei Datentypen haben wir im Listing \ref{inout} bereits kennengelernt, \texttt{string} und \texttt{integer}. String steht für Zeichenketten, integer für ganze Zahlen. Neben diesen beiden gibt es noch zwei weitere primitive Datentypen im Python-Kern: \texttt{float} und \texttt{boolean}, dazu später mehr. Floats nutzt man für \enquote{Zahlen mit Komma} und \texttt{boolean} für logische Wahrheitswerte. Bei Kommazahlen ist zu beachten, dass anstelle des Kommas der Punkt \texttt{.}  den ganzzahligen Teil vom Dezimalteil abtrennt. Man schreibt also \texttt{3.1415927} anstelle von \texttt{3,1415927}. 
+
+In seinen tausenden von Modulen hält Python noch diverse andere Datentypen bereit, an einigen werden wir im Laufe des Skripts noch vorbeikommen. 
+
+Möchte 
 
 \pypy{sdfdfd}{Codes/helloworld.py}
 
