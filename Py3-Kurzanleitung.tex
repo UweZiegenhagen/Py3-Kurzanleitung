@@ -10,7 +10,7 @@
 \usepackage{csquotes}
 \usepackage{paralist}
 \usepackage{microtype}
-\usepackage{xcolor}
+\usepackage[dvipsnames]{xcolor}
 \usepackage{cmbright}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{6pt}
@@ -22,6 +22,13 @@
 \ofoot[\pagemark]{\pagemark}
 \cfoot[]{}
 \chead[]{}
+
+\definecolor{hellgelb}{rgb}{1,1,0.8}
+\definecolor{lightgelb}{rgb}{1,1,0.8}
+\definecolor{colKeys}{rgb}{0,0,1}
+\definecolor{colIdentifier}{rgb}{0,0,0}
+\definecolor{colComments}{rgb}{1,0,0}
+\definecolor{colString}{rgb}{0,0.5,0}
 
 \usepackage{listings}
 \lstset{%
@@ -42,7 +49,8 @@
     breaklines=true, %
     backgroundcolor=\color{hellgelb}, %
     breakautoindent=true, %
-    captionpos=b%
+    captionpos=b,%
+    language={Python}
 }
 
 \lstset{literate=%
@@ -55,6 +63,23 @@
     {ö}{{\"o}}1
     {~}{{\textasciitilde}}1
 }
+
+\makeatletter
+\lstdefinestyle{ausgabe}{
+  basicstyle=\ttfamily\scriptsize,%
+  backgroundcolor=\color{BurntOrange}%
+}
+\makeatother
+\lstnewenvironment{ausgabe}{\lstset{style=ausgabe}}{} 
+
+\usepackage{attachfile}
+\usepackage{fontawesome}
+\newcommand{\ta}[1]{\textattachfile[color=1 0 0]{#1}{\faFilePowerpointO}}
+
+\newcommand{\pypy}[2]{\lstinputlisting[language={Python},caption={#1 \ta{#2}}]{#2}}
+
+\newcommand{\pypyl}[3]{\lstinputlisting[language={Python},label={#3},caption={#1 \ta{#2}}]{#2}}
+
 
 \usepackage{minted}
 
@@ -178,10 +203,106 @@ Man kann Python auf verschiedene Arten benutzen:
 \item über halb-interaktive Methoden wie Jupyter und iPython
 \end{enumerate}
 
-In diesem Kapitel betrachten wir kurz die interaktive Nutzung, in den weiteren Kapiteln werden wir dann näher auf die Batch-Nutzung/ halb-interaktive Nutzung eingehen.
+In diesem Kapitel betrachten wir kurz die interaktive Nutzung, in den weiteren Kapiteln werden wir dann näher auf die anderen Nutzungsarten eingehen. 
+
+Listing \ref{code:inter} zeigt ein Beispiel für die Arbeit im interaktiven Modus, in den Python wechselt, wenn man die \texttt{python.exe} startet. In diesem Modus kann man Python wie einen Taschenrechner benutzen.
+
+\begin{lstlisting}[caption={Im interaktiven Modus},label={code:inter}]
+Python 3.8.1 (tags/v3.8.1:1b293b6, Dec 18 2019, 22:39:24) [MSC v.1916 32 bit (Intel)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> 2+2*3
+8
+>>> 2**2
+4
+>>> 4**0.5
+2.0
+>>>
+\end{lstlisting}
+
+Zu beachten ist dabei, dass:
+
+\begin{enumerate}
+\item Python kann beliebig genau mit (ganzen?) Zahlen rechnen
+\item Nicht alle Funktionen eines Taschenrechners stehen bereit, ohne dass man ein entsprechendes Modul geladen hat. Dazu gleich mehr.
+\end{enumerate}
+
+Mehr Funktionalität im \enquote{Taschenrechner} erhält man, wenn man eines der vielen Module lädt, die Python in seiner Standardbibliothek mitbringt. Nehmen wir beispielsweise die Wurzelfunktion \texttt{sqrt()} aus dem \texttt{math} Modul. Es gibt verschiedene Methoden, ein Modul zu laden, daher wollen wir diese kurz vorstellen:
+
+\begin{description}
+\item[\texttt{import math}] lädt das Modul \texttt{math}, zum Aufruf der Funktionen gibt man \enquote{math.} und den Funktionsnamen ein, Beispiel: \texttt{math.sqrt(4)}.
+\item[\texttt{import math as m}] stellt die Funktionen von \texttt{math} unter der Abkürzung \texttt{m} bereit, Beispiel \texttt{m.sqrt(4)}. Für viele Module haben sich dabei Standardabkürzungen herausgebildt, so steht \texttt{pd} für \texttt{pandas}, \texttt{np} für \texttt{numpy}, etc.
+\item[\texttt{from math import sqrt}] lädt die Funktion in den \enquote{allgemeinen Speicher}, ein Präfix ist beim Aufruf nicht mehr nötig. Beispiel \texttt{sqrt(4)} Mit dieser Methode sollte man sorgsam umgehen, da verschiedene Module gleiche Funktionsnamen nutzen können. In der Praxis ist daher die zweite Methode empfehlenswert.
+\end{description}
+
+Ab jetzt wechseln wir in den Batch-Modus von Python, was nichts anderes heißt als dass wir unseren Python-Code in eine Textdatei schreiben und diese der \texttt{python.exe} als Argument übergeben. Python verarbeitet dann die Datei \enquote{in einem Rutsch}.
+
+
+Listing \ref{importe} zeigt einen Überblick über die verschiedenen Methoden.
+
+\pypyl{Überblick der Import-Methoden}{Codes/importe.py}{importe}
+
+Listing zeigt auch noch einen wichtigen Unterschied zum interaktiven Modus: während man im interaktiven Modus sofort eine Ausgabe der Ergebnisse erhält, muss bzw. kann man im Batch-Modus die Ein- und Ausgabe von Werten, etc. explizit steuern. 
+
+\inputminted[bgcolor=bg]{python}{Codes/importe.py}.
+
+Für die Ausgabe nutzt man in Python den \texttt{print()}-Befehl, für die Eingabe \texttt{input()}, Listing \ref{inout} zeigt entsprechende Beispiele, die wir uns noch ein wenig genauer anschauen müssen:
+
+\begin{enumerate}
+\item Variablen beginnen mit einem Buchstaben oder Unterstrich, Python unterscheidet zwischen Groß- und Kleinschreibung. Die Variable \enquote{alter} ist daher eine andere als die Variable \texttt{Alter.}
+\item Zeichenketten setzt man in Python mit einfachen oder doppelten Anführungszeichen. Möchte man Anführungszeichen innerhalb einer Zeichenkette ausgeben, so nimmt man jeweils diejenigen, die nicht den String begrenzen. 
+\item Der \texttt{print()} Befehl akzeptiert auch mehrere Argumente, mit Komma getrennt. Standardmäßig werden sie bei der Ausgabe mit einem Leerzeichen getrennt, dies lässt sich durch Angabe des Parameters \texttt{sep} ändern.
+\item \texttt{input()} liest immer nur Zeichenketten (Strings) vom Nutzer ein, selbst wenn man Zahlen eingibt. Möchte man mit der Zahl weiterrechnen, so muss man den String explizit in eine Zahl umwandeln. Dies gilt auch für die verkettete Ausgabe, hier muss die errechnete Zahl auch wieder explizit in einen String umgewandelt werden, bevor man sie ausgeben kann.
+\end{enumerate} 
+
+
+
+
+\pypyl{Eingabe und Ausgabe}{Codes/inout.py}{inout}
+
+
+\begin{ausgabe}[caption={Ausgabe von Listing \ref{inout}}]
+Hallo Welt!
+Hallo Welt
+
+Geben Sie Ihren Namen ein: Uwe
+
+Geben Sie Ihr Alter ein: 43
+Hallo, Uwe
+In einem Jahr sind Sie 44 Jahre alt
+\end{ausgabe}
+
+
+
+\pypy{sdfdfd}{Codes/helloworld.py}
+
+\ta{Codes/hello_world.py}
+
+\pypy{sdfdfd}{Codes/helloworld.py}
+
+\pypy{sdfdfd}{Codes/hello_world.py}
 
 \chapter{Funktionen}
 
 \chapter{Anwendungen}
 
 \end{document}
+
+\begin{minted}[
+               linenos,
+               bgcolor=bg,
+               numbersep=5pt,
+               gobble=2,
+               label={Im interaktiven Modus},
+               fontsize=\scriptsize,
+               frame=lines,
+               framesep=2mm]{python}
+Python 3.8.1 (tags/v3.8.1:1b293b6, Dec 18 2019, 22:39:24) [MSC v.1916 32 bit (Intel)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> 2+2*3
+8
+>>> 2**2
+4
+>>> 4**0.5
+2.0
+>>>
+\end{minted}
